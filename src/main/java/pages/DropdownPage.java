@@ -13,13 +13,16 @@ public class DropdownPage {
     public DropdownPage(WebDriver driver){
         this.driver = driver;
     }
+
     public void selectFromDropdown(String option){
         findDropdownElement().selectByVisibleText(option);
     }
+
     public List<String> getSelectedOptions(){
         List<WebElement> selectedElements = findDropdownElement().getAllSelectedOptions();
         return selectedElements.stream().map(e->e.getText()).collect(Collectors.toList());
     }
+
     private Select findDropdownElement(){
         return new Select(driver.findElement(dropdown));
     }
