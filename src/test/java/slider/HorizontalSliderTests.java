@@ -16,7 +16,7 @@ public class HorizontalSliderTests extends BaseTests {
     }
 
     @Test
-    public void checkSliderRange() {
+    public void testCheckSliderRange() {
         sliderPage.changeRange(8);
         assertEquals(sliderPage.getRangeNumber(),"4", "Range number doesn't match");
     }
