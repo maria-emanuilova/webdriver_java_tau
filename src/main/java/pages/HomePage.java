@@ -54,6 +54,16 @@ public class HomePage {
         return new ContextMenuPage(driver);
     }
 
+    public WysiwygEditorPage clickWysiwygEditor() {
+        clickLink("WYSIWYG Editor");
+        return new WysiwygEditorPage(driver);
+    }
+
+    public FramesPage clickFrames() {
+        clickLink("Frames");
+        return new FramesPage(driver);
+    }
+
 //Below is a generic method we could use for clicking on all of our links
     private void clickLink(String linkText){
         driver.findElement(By.linkText(linkText)).click();

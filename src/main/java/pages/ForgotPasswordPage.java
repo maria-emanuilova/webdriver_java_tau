@@ -7,7 +7,7 @@ public class ForgotPasswordPage {
     private WebDriver driver;
     private By emailInputField = By.id("email");
     private By retrievePasswordButton = By.cssSelector("#forgot_password button");
-    private By mesage = By.tagName("h1");
+    private By message = By.tagName("h1");
 
     public ForgotPasswordPage(WebDriver driver){
         this.driver = driver;
@@ -22,6 +22,6 @@ public class ForgotPasswordPage {
     }
 
     public String getMessageText() {
-        return driver.findElement(mesage).getText();
+        return driver.findElement(message).getText();
     }
 }

@@ -11,11 +11,12 @@ import pages.HomePage;
 public class BaseTests {
     protected WebDriver driver;
     protected HomePage homePage;
+    protected String baseUrl = "https://the-internet.herokuapp.com/";
 
     @BeforeClass
     public void setUp() {
         driver = new ChromeDriver();
-        driver.get("https://the-internet.herokuapp.com/");
+        driver.get(baseUrl);
         driver.manage().window().maximize();
 
         homePage = new HomePage(driver);
