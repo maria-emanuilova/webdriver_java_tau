@@ -69,6 +69,16 @@ public class HomePage {
         return new DynamicLoadingPage(driver);
     }
 
+    public LargeAndDeepDomPage clickLargeAndDeepDom() {
+        clickLink("Large & Deep DOM");
+        return new LargeAndDeepDomPage(driver);
+    }
+
+    public InfiniteScrollPage clickInfiniteScroll() {
+        clickLink("Infinite Scroll");
+        return new InfiniteScrollPage(driver);
+    }
+
 //Below is a generic method we could use for clicking on all of our links
     private void clickLink(String linkText){
         driver.findElement(By.linkText(linkText)).click();
