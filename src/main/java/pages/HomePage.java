@@ -69,6 +69,11 @@ public class HomePage {
         return new DynamicLoadingPage(driver);
     }
 
+    public MultipleWindowsPage clickMultipleWindows() {
+        clickLink("Multiple Windows");
+        return new MultipleWindowsPage(driver);
+    }
+
 //Below is a generic method we could use for clicking on all of our links
     private void clickLink(String linkText){
         driver.findElement(By.linkText(linkText)).click();
