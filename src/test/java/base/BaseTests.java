@@ -1,14 +1,18 @@
 package base;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import com.google.common.io.Files;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import pages.HomePage;
 import utils.WindowManager;
+
+import java.io.File;
+import java.io.IOException;
 
 public class BaseTests {
     protected WebDriver driver;
@@ -27,6 +31,22 @@ public class BaseTests {
     @AfterClass
     public void tearDown(){
         driver.quit();
+    }
+
+    @AfterMethod
+    //this will execute after each test runs
+    public void recordFailure(ITestResult result) {
+        //to take screenshots only when test FAILS:
+        if(ITestResult.FAILURE == result.getStatus()) {
+            //we cast our driver to the Selenium screenshot taking class:
+            var camera = (TakesScreenshot) driver;
+            File screenshot = camera.getScreenshotAs(OutputType.FILE); //screenshot will be saved as file
+            try {
+                Files.move(screenshot, new File("src/main/resources/screenshots/" + result.getName() + ".png"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public WindowManager getWindowManager() {
