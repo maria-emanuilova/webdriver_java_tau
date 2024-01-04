@@ -73,6 +73,16 @@ public class HomePage {
         clickLink("Multiple Windows");
         return new MultipleWindowsPage(driver);
     }
+  
+    public LargeAndDeepDomPage clickLargeAndDeepDom() {
+        clickLink("Large & Deep DOM");
+        return new LargeAndDeepDomPage(driver);
+    }
+
+    public InfiniteScrollPage clickInfiniteScroll() {
+        clickLink("Infinite Scroll");
+        return new InfiniteScrollPage(driver);
+    }
 
 //Below is a generic method we could use for clicking on all of our links
     private void clickLink(String linkText){
