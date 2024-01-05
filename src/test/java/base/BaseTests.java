@@ -3,6 +3,7 @@ package base;
 import com.google.common.io.Files;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
@@ -23,9 +24,10 @@ public class BaseTests {
 
     @BeforeClass
     public void setUp() {
-        driver = new EventFiringWebDriver(new ChromeDriver());
+        driver = new EventFiringWebDriver(new ChromeDriver(getChromeOptions()));
         driver.register(new EventReporter());
         driver.get(baseUrl);
+        //setCookie();
         driver.manage().window().maximize();
 
         homePage = new HomePage(driver);
@@ -50,6 +52,18 @@ public class BaseTests {
                 e.printStackTrace();
             }
         }
+    }
+
+    private ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("headless");
+        return options;
+    }
+
+    private void setCookie() {
+        Cookie cookie = new Cookie.Builder("tau", "123") //domain is the website we're testing:
+        .domain(baseUrl).build();
+        driver.manage().addCookie(cookie);
     }
 
     public WindowManager getWindowManager() {
